@@ -1,0 +1,1 @@
+a:4:{s:7:"jsCache";a:0:{}s:8:"cssCache";a:0:{}s:10:"imageCache";a:2:{s:21:"icon_email_folder.gif";s:43:"themes/default/images/icon_email_folder.gif";s:10:"Search.gif";s:32:"themes/default/images/Search.gif";}s:13:"templateCache";a:0:{}}
