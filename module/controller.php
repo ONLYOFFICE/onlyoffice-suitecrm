@@ -3,6 +3,7 @@
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once 'modules/Onlyoffice/lib/appconfig.php';
+require_once 'modules/Onlyoffice/lib/documentutility.php';
 
 class OnlyofficeController extends SugarController
 {
@@ -42,10 +43,12 @@ class OnlyofficeController extends SugarController
 
         $format = $appConfig->GetFormats()[$ext] ?? null;
 
+        $key = DocumentUtility::GetKey($document);
+
         $config = [
             'document' => [
                 'fileType' => $ext,
-                'key' => $document->document_revision_id . strtotime($document->date_modified),
+                'key' => $key,
                 'title' => $document->filename,
                 'url' => $root . 'index.php?entryPoint=onlyofficeDownload&record=' . $record
             ],
