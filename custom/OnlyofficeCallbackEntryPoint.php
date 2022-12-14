@@ -4,17 +4,22 @@ if (!defined('sugarEntry') || !sugarEntry) {
     die('Not A Valid Entry Point');
 }
 
+require_once 'modules/Onlyoffice/lib/crypt.php';
+
 const TrackerStatus_Editing = 1;
 const TrackerStatus_MustSave = 2;
 const TrackerStatus_Corrupted = 3;
 const TrackerStatus_Closed = 4;
 
-if (!isset($_REQUEST['record'])) {
-    http_response_code(400);
+$hash = $_REQUEST['hash'] ?? '';
+
+list($hashData, $error) = Crypt::ReadHash($hash);
+if ($hashData === null) {
+    http_response_code(401);
     die();
 }
 
-$record = $_REQUEST['record'];
+$record = $hashData->record;
 
 if (($bodyStream = file_get_contents('php://input')) === false) {
     http_response_code(400);

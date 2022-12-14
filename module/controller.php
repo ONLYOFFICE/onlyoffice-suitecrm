@@ -4,6 +4,7 @@ if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
 require_once 'modules/Onlyoffice/lib/appconfig.php';
 require_once 'modules/Onlyoffice/lib/documentutility.php';
+require_once 'modules/Onlyoffice/lib/crypt.php';
 
 class OnlyofficeController extends SugarController
 {
@@ -33,8 +34,6 @@ class OnlyofficeController extends SugarController
            $record = $_REQUEST['record'];
         }
 
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-
         $document = BeanFactory::getBean('Documents', $record);
 
         $user = $GLOBALS['current_user'];
@@ -45,12 +44,14 @@ class OnlyofficeController extends SugarController
 
         $key = DocumentUtility::GetKey($document);
 
+        $hash = Crypt::GetHash(['record' => $record]);
+
         $config = [
             'document' => [
                 'fileType' => $ext,
                 'key' => $key,
                 'title' => $document->filename,
-                'url' => $root . 'index.php?entryPoint=onlyofficeDownload&record=' . $record
+                'url' => $this->getUrl() . 'index.php?entryPoint=onlyofficeDownload&hash=' . $hash
             ],
             'documentType' => $format["type"],
             'editorConfig' => [
@@ -64,12 +65,16 @@ class OnlyofficeController extends SugarController
         $canEdit = isset($format["edit"]) && $format["edit"];
         $config['document']['permissions']['edit'] = true;
         if ($canEdit) {
-            $config['editorConfig']['callbackUrl'] = $root . 'index.php?entryPoint=onlyofficeCallback&record=' . $record;
+            $config['editorConfig']['callbackUrl'] = $this->getUrl() . 'index.php?entryPoint=onlyofficeCallback&hash=' . $hash;
         } else {
             $config["editorConfig"]["mode"] = "view";
         }
 
         $this->view_object_map['config'] = $config;
         $this->view_object_map['documentServerUrl'] = $documentServerUrl;
+    }
+
+    private function getUrl() {
+        return (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
     }
 }

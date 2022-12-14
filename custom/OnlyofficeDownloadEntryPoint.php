@@ -4,12 +4,17 @@ if (!defined('sugarEntry') || !sugarEntry) {
     die('Not A Valid Entry Point');
 }
 
-if (!isset($_REQUEST['record'])) {
-    http_response_code(400);
+require_once 'modules/Onlyoffice/lib/crypt.php';
+
+$hash = $_REQUEST['hash'] ?? '';
+
+list($hashData, $error) = Crypt::ReadHash($hash);
+if ($hashData === null) {
+    http_response_code(401);
     die();
 }
 
-$record = $_REQUEST['record'];
+$record = $hashData->record;
 
 $document = BeanFactory::getBean('Documents', $record);
 if ($document === null) {
