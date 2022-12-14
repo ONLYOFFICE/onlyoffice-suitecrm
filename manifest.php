@@ -19,7 +19,7 @@ $installdefs = array(
       ),
       1 =>
       array(
-        'from' => '<basepath>/',
+        'from' => '<basepath>/module/',
         'to' => 'modules/Onlyoffice'
       )
     )
