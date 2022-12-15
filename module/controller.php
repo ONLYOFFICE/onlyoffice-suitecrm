@@ -34,17 +34,25 @@ class OnlyofficeController extends SugarController
            $record = $_REQUEST['record'];
         }
 
-        $document = BeanFactory::getBean('Documents', $record);
-
         $user = $GLOBALS['current_user'];
 
-        $ext = strtolower(pathinfo($document->filename, PATHINFO_EXTENSION));
+        $document = BeanFactory::getBean('Documents', $record);
+        if ($document === null) {
+            //not found
+            return;
+        }
 
+        if (!$document->ACLAccess('view')) {
+            //status 401
+            return;
+        }
+
+        $ext = strtolower(pathinfo($document->filename, PATHINFO_EXTENSION));
         $format = $appConfig->GetFormats()[$ext] ?? null;
 
         $key = DocumentUtility::GetKey($document);
 
-        $hash = Crypt::GetHash(['record' => $record]);
+        $hash = Crypt::GetHash(['record' => $record, 'userId' => $user->id]);
 
         $config = [
             'document' => [
@@ -63,8 +71,10 @@ class OnlyofficeController extends SugarController
         ];
 
         $canEdit = isset($format["edit"]) && $format["edit"];
-        $config['document']['permissions']['edit'] = true;
-        if ($canEdit) {
+        $allowEdit = $document->ACLAccess('edit');
+
+        $config['document']['permissions']['edit'] = $allowEdit;
+        if ($canEdit && $allowEdit) {
             $config['editorConfig']['callbackUrl'] = $this->getUrl() . 'index.php?entryPoint=onlyofficeCallback&hash=' . $hash;
         } else {
             $config["editorConfig"]["mode"] = "view";

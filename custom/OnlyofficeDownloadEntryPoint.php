@@ -15,10 +15,23 @@ if ($hashData === null) {
 }
 
 $record = $hashData->record;
+$userId = $hashData->userId;
 
 $document = BeanFactory::getBean('Documents', $record);
 if ($document === null) {
     http_response_code(404);
+    die();
+}
+
+global $current_user;
+
+$user = new \User();
+$user->retrieve($userId);
+
+$current_user = $user;
+
+if (!$document->ACLAccess('view')) {
+    http_response_code(401);
     die();
 }
 

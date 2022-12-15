@@ -20,6 +20,7 @@ if ($hashData === null) {
 }
 
 $record = $hashData->record;
+$userId = $hashData->userId;
 
 if (($bodyStream = file_get_contents('php://input')) === false) {
     http_response_code(400);
@@ -40,6 +41,18 @@ switch ($status) {
         $document = BeanFactory::getBean('Documents', $record);
         if ($document === null) {
             http_response_code(404);
+            die(json_encode(['error' => $result]));
+        }
+
+        global $current_user;
+
+        $user = new \User();
+        $user->retrieve($userId);
+
+        $current_user = $user;
+
+        if (!$document->ACLAccess('edit')) {
+            http_response_code(401);
             die(json_encode(['error' => $result]));
         }
 
