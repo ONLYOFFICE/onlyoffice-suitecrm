@@ -1,11 +1,11 @@
 <?php
 
 $entry_point_registry['onlyofficeDownload'] = array(
-      'file' => 'custom/OnlyofficeDownloadEntryPoint.php',
+      'file' => 'modules/Onlyoffice/download.php',
       'auth' => false,
 );
 
 $entry_point_registry['onlyofficeCallback'] = array(
-      'file' => 'custom/OnlyofficeCallbackEntryPoint.php',
+      'file' => 'modules/Onlyoffice/callback.php',
       'auth' => false,
 );
