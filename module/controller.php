@@ -25,30 +25,35 @@ class OnlyofficeController extends SugarController
     public function action_editor() {
         $this->view = 'editor';
 
+        $record = $_REQUEST['record'] ?? '';
+
         $appConfig = new AppConfig();
 
         $documentServerUrl = $appConfig->GetDocumentServerUrl();
+        if (empty($documentServerUrl)) {
+            $this->view_object_map['error'] = 'ONLYOFFICE app is not configured. Please contact admin';
+            return;
+        }
 
-        $record = '';
-        if (isset($_REQUEST['record'])) {
-           $record = $_REQUEST['record'];
+        $document = BeanFactory::getBean('Documents', $record);
+        if ($document === null) {
+            $this->view_object_map['error'] = 'File not found';
+            return;
         }
 
         $user = $GLOBALS['current_user'];
 
-        $document = BeanFactory::getBean('Documents', $record);
-        if ($document === null) {
-            //not found
-            return;
-        }
-
         if (!$document->ACLAccess('view')) {
-            //status 401
+            $this->view_object_map['error'] = 'You do not have enough permissions to view the file';
             return;
         }
 
         $ext = strtolower(pathinfo($document->filename, PATHINFO_EXTENSION));
         $format = $appConfig->GetFormats()[$ext] ?? null;
+        if (empty($format)) {
+            $this->view_object_map['error'] = 'Format is not supported';
+            return;
+        }
 
         $key = DocumentUtility::GetKey($document);
 
