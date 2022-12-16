@@ -60,6 +60,15 @@ class AppConfig
         return $value;
     }
 
+    public static function GetAuthHeader() {
+        $value = self::GetJwtHeader();
+        if (empty($value)) {
+            $value = 'Authorization';
+        }
+
+        return $value;
+    }
+
     public static function GetFormats() {
         return self::$formats;
     }

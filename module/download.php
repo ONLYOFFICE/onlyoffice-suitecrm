@@ -18,8 +18,7 @@ $record = $hashData->record;
 $userId = $hashData->userId;
 
 if (!empty(AppConfig::GetDocumentSecretKey())) {
-    $jwtHeader = !empty(AppConfig::GetJwtHeader()) ? AppConfig::GetJwtHeader() : 'Authorization';
-    $header = getallheaders()[$jwtHeader];
+    $header = getallheaders()[AppConfig::GetAuthHeader()];
     if(empty($header)) {
         http_response_code(401);
         die();
