@@ -17,6 +17,23 @@ if ($hashData === null) {
 $record = $hashData->record;
 $userId = $hashData->userId;
 
+if (!empty(AppConfig::GetDocumentSecretKey())) {
+    $jwtHeader = !empty(AppConfig::GetJwtHeader()) ? AppConfig::GetJwtHeader() : 'Authorization';
+    $header = getallheaders()[$jwtHeader];
+    if(empty($header)) {
+        http_response_code(401);
+        die();
+    }
+
+    $header = substr($header, strlen("Bearer "));
+
+    list($hashData, $error) = Crypt::ReadHash($header);
+    if ($hashData === null) {
+        http_response_code(401);
+        die();
+    }
+}
+
 $document = BeanFactory::getBean('Documents', $record);
 if ($document === null) {
     http_response_code(404);

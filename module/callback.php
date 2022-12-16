@@ -4,6 +4,7 @@ if (!defined('sugarEntry') || !sugarEntry) {
     die('Not A Valid Entry Point');
 }
 
+require_once 'modules/Onlyoffice/lib/appconfig.php';
 require_once 'modules/Onlyoffice/lib/crypt.php';
 
 const TrackerStatus_Editing = 1;
@@ -32,7 +33,41 @@ if (($data = json_decode($bodyStream)) === null) {
     die();
 }
 
+$token = isset($data->token) ? $data->token : null;
 $status = $data->status;
+$url = isset($data->url) ? $data->url : null;
+
+if (!empty(AppConfig::GetDocumentSecretKey())) {
+    if (!empty($token)) {
+        list($hashData, $error) = Crypt::ReadHash($token);
+        if ($hashData === null) {
+            http_response_code(401);
+            die();
+        }
+
+        $payload = $hashData;
+    } else {
+        $jwtHeader = !empty(AppConfig::GetJwtHeader()) ? AppConfig::GetJwtHeader() : 'Authorization';
+        $header = getallheaders()[$jwtHeader];
+        if(empty($header)) {
+            http_response_code(401);
+            die();
+        }
+
+        $header = substr($header, strlen("Bearer "));
+
+        list($hashData, $error) = Crypt::ReadHash($header);
+        if ($hashData === null) {
+            http_response_code(401);
+            die();
+        }
+
+        $payload = $hashData->payload;
+    }
+
+    $status = $payload->status;
+    $url = isset($payload->url) ? $payload->url : null;
+}
 
 $result = 1;
 switch ($status) {
@@ -56,7 +91,7 @@ switch ($status) {
             die(json_encode(['error' => $result]));
         }
 
-        if (($newContent = file_get_contents($data->url)) === false) {
+        if (($newContent = file_get_contents($url)) === false) {
             http_response_code(400);
             die(json_encode(['error' => $result]));
         }

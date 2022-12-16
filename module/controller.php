@@ -87,6 +87,11 @@ class OnlyofficeController extends SugarController
             $config["editorConfig"]["mode"] = "view";
         }
 
+        if (!empty(AppConfig::GetDocumentSecretKey())) {
+            $token = Crypt::GetHash($config);
+            $config['token'] = $token;
+        }
+
         $this->view_object_map['config'] = $config;
         $this->view_object_map['documentServerUrl'] = $documentServerUrl;
     }

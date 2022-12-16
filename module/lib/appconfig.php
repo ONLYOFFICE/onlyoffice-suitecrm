@@ -53,7 +53,7 @@ class AppConfig
 
     public static function GetSecretKey() {
         $value = self::GetDocumentSecretKey();
-        if (empty($key)) {
+        if (empty($value)) {
             $value = $GLOBALS['sugar_config']['unique_key'];
         }
 
