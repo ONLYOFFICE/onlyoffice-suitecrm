@@ -11,11 +11,17 @@ class OnlyofficeController extends SugarController
     public function action_settings() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $documentServerUrl = isset($_POST['documentServerUrl']) ? $_POST['documentServerUrl'] : '';
+            $secretKey = isset($_POST['secretKey']) ? $_POST['secretKey'] : '';
+            $jwtHeader = isset($_POST['jwtHeader']) ? $_POST['jwtHeader'] : '';
 
             AppConfig::SetDocumentServerUrl($documentServerUrl);
+            AppConfig::SetDocumentSecretKey($secretKey);
+            AppConfig::SetJwtHeader($jwtHeader);
         }
 
         $this->view_object_map['documentServerUrl'] = AppConfig::GetDocumentServerUrl();
+        $this->view_object_map['secretKey'] = AppConfig::GetDocumentSecretKey();
+        $this->view_object_map['jwtHeader'] = AppConfig::GetJwtHeader();
 
         $this->view = 'settings';
     }

@@ -14,6 +14,10 @@ class AppConfig
 
     private static $_documentServerUrl = 'documentServerUrl';
 
+    private static $_secretKey = 'secretKey';
+
+    private static $_jwtHeader = 'jwtHeader';
+
     private static function GetAdministration() {
         if (!isset(self::$administration)) {
             self::$administration = new Administration();
@@ -29,6 +33,31 @@ class AppConfig
 
     public static function SetDocumentServerUrl($value) {
         self::SetAppValue(self::$_documentServerUrl, $value);
+    }
+
+    public static function GetDocumentSecretKey() {
+        return self::GetAppValue(self::$_secretKey);
+    }
+
+    public static function SetDocumentSecretKey($value) {
+        self::SetAppValue(self::$_secretKey, $value);
+    }
+
+    public static function GetJwtHeader() {
+        return self::GetAppValue(self::$_jwtHeader);
+    }
+
+    public static function SetJwtHeader($value) {
+        self::SetAppValue(self::$_jwtHeader, $value);
+    }
+
+    public static function GetSecretKey() {
+        $value = self::GetDocumentSecretKey();
+        if (empty($key)) {
+            $value = $GLOBALS['sugar_config']['unique_key'];
+        }
+
+        return $value;
     }
 
     public static function GetFormats() {

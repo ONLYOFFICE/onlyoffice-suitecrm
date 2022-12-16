@@ -23,6 +23,26 @@
                     </span>
                 </td>
             </tr>
+            <tr>
+                <td width="15%" scope="row" nowrap="">
+                    <span>Secret key (leave blank to disable)</span>
+                </td>
+                <td width="35%">
+                    <span>
+                        <input name="secretKey" tabindex="1" size="30" maxlength="50" type="text" value="{$secretKey}">
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td width="15%" scope="row" nowrap="">
+                    <span>Authorization header</span>
+                </td>
+                <td width="35%">
+                    <span>
+                        <input name="jwtHeader" tabindex="1" size="30" maxlength="50" type="text" value="{$jwtHeader}">
+                    </span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </form>

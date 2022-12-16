@@ -8,10 +8,12 @@ class OnlyofficeViewSettings extends SugarView
 {
     public function display()
     {
-       $smarty = new Sugar_Smarty();
+        $smarty = new Sugar_Smarty();
 
-       $smarty->assign('documentServerUrl', $this->view_object_map['documentServerUrl']);
+        $smarty->assign('documentServerUrl', $this->view_object_map['documentServerUrl']);
+        $smarty->assign('secretKey', $this->view_object_map['secretKey']);
+        $smarty->assign('jwtHeader', $this->view_object_map['jwtHeader']);
 
-       echo $smarty->fetch('modules/Onlyoffice/templates/settings.tpl');
+        echo $smarty->fetch('modules/Onlyoffice/templates/settings.tpl');
     }
 }

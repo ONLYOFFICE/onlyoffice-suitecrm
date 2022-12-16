@@ -2,16 +2,18 @@
 
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
+require_once 'modules/Onlyoffice/lib/appconfig.php';
+
 class Crypt
 {
     public static function GetHash($object)
     {
-        return \Firebase\JWT\JWT::encode($object, self::GetCryptKey(), 'HS256');
+        return \Firebase\JWT\JWT::encode($object, AppConfig::GetSecretKey(), 'HS256');
     }
 
     public static function ReadHash($token)
     {
-        $key = new \Firebase\JWT\Key(self::GetCryptKey(), 'HS256');
+        $key = new \Firebase\JWT\Key(AppConfig::GetSecretKey(), 'HS256');
 
         $result = null;
         $error = null;
@@ -25,10 +27,5 @@ class Crypt
         }
 
         return [$result, $error];
-    }
-
-    private static function GetCryptKey()
-    {
-        return $GLOBALS['sugar_config']['unique_key'];
     }
 }
