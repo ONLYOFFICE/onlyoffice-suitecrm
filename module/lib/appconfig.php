@@ -6,43 +6,51 @@ require_once 'modules/Administration/Administration.php';
 
 class AppConfig
 {
-    private $administration;
+    private static $administration;
 
-    private $retrived;
+    private static $retrived;
 
-    private $_category = 'onlyoffice';
+    private static $_category = 'onlyoffice';
 
-    private $_documentServerUrl = 'documentServerUrl';
+    private static $_documentServerUrl = 'documentServerUrl';
 
-    public function __construct() {
-        $this->administration = new Administration();
-        $this->retrived = false;
+    private static function GetAdministration() {
+        if (!isset(self::$administration)) {
+            self::$administration = new Administration();
+            self::$retrived = false;
+        }
+
+        return self::$administration;
     }
 
-    public function GetDocumentServerUrl() {
-        $this->Retrieve();
+    public static function GetDocumentServerUrl() {
+        return self::GetAppValue(self::$_documentServerUrl);
+    }
 
-        $result = $this->administration->settings[$this->_category . '_' . $this->_documentServerUrl] ?? '';
+    public static function SetDocumentServerUrl($value) {
+        self::SetAppValue(self::$_documentServerUrl, $value);
+    }
+
+    public static function GetFormats() {
+        return self::$formats;
+    }
+
+    private static function GetAppValue($key, $default = '') {
+        if (!isset(self::$retrived) || !self::$retrived) {
+            self::GetAdministration()->retrieveSettings(self::$_category);
+            self::$retrived = true;
+        }
+
+        $result = self::GetAdministration()->settings[self::$_category . '_' . $key] ?? $default;
         return $result;
     }
 
-    public function SetDocumentServerUrl($value) {
-        $result = $this->administration->saveSetting($this->_category, $this->_documentServerUrl, $value);
-        $this->retrived = false;
+    private static function SetAppValue($key, $value) {
+        self::GetAdministration()->saveSetting(self::$_category, $key, $value);
+        self::$retrived = false;
     }
 
-    public function GetFormats() {
-        return $this->formats;
-    }
-
-    private function Retrieve() {
-        if (count($this->administration->settings) === 0 || !$this->retrived) {
-            $this->administration->retrieveSettings($this->_category);
-            $this->retrived = true;
-        }
-    }
-
-    private $formats = [
+    private static $formats = [
         "djvu" => ["type" => 'word'],
         "doc" => ["type" => 'word'],
         "docm" => ["type" => 'word'],

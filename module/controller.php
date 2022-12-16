@@ -9,15 +9,13 @@ require_once 'modules/Onlyoffice/lib/crypt.php';
 class OnlyofficeController extends SugarController
 {
     public function action_settings() {
-        $appConfig = new AppConfig();
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $documentServerUrl = isset($_POST['documentServerUrl']) ? $_POST['documentServerUrl'] : '';
 
-            $appConfig->SetDocumentServerUrl($documentServerUrl);
+            AppConfig::SetDocumentServerUrl($documentServerUrl);
         }
 
-        $this->view_object_map['documentServerUrl'] = $appConfig->GetDocumentServerUrl();
+        $this->view_object_map['documentServerUrl'] = AppConfig::GetDocumentServerUrl();
 
         $this->view = 'settings';
     }
@@ -27,9 +25,7 @@ class OnlyofficeController extends SugarController
 
         $record = $_REQUEST['record'] ?? '';
 
-        $appConfig = new AppConfig();
-
-        $documentServerUrl = $appConfig->GetDocumentServerUrl();
+        $documentServerUrl = AppConfig::GetDocumentServerUrl();
         if (empty($documentServerUrl)) {
             $this->view_object_map['error'] = 'ONLYOFFICE app is not configured. Please contact admin';
             return;
@@ -49,7 +45,7 @@ class OnlyofficeController extends SugarController
         }
 
         $ext = strtolower(pathinfo($document->filename, PATHINFO_EXTENSION));
-        $format = $appConfig->GetFormats()[$ext] ?? null;
+        $format = AppConfig::GetFormats()[$ext] ?? null;
         if (empty($format)) {
             $this->view_object_map['error'] = 'Format is not supported';
             return;
