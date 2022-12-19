@@ -34,12 +34,14 @@ class OnlyofficeController extends SugarController
         $documentServerUrl = AppConfig::GetDocumentServerUrl();
         if (empty($documentServerUrl)) {
             $this->view_object_map['error'] = 'ONLYOFFICE app is not configured. Please contact admin';
+            LoggerManager::getLogger()->error('Onlyoffice editor: app is not configured');
             return;
         }
 
         $document = BeanFactory::getBean('Documents', $record);
         if ($document === null) {
             $this->view_object_map['error'] = 'File not found';
+            LoggerManager::getLogger()->error('Onlyoffice editor: file "' . $record . '" not found');
             return;
         }
 
@@ -47,6 +49,7 @@ class OnlyofficeController extends SugarController
 
         if (!$document->ACLAccess('view')) {
             $this->view_object_map['error'] = 'You do not have enough permissions to view the file';
+            LoggerManager::getLogger()->error('Onlyoffice editor: user "' . $user->user_name . '" does not have enough permissions to view the file "' . $record .'"');
             return;
         }
 
@@ -54,6 +57,7 @@ class OnlyofficeController extends SugarController
         $format = AppConfig::GetFormats()[$ext] ?? null;
         if (empty($format)) {
             $this->view_object_map['error'] = 'Format is not supported';
+            LoggerManager::getLogger()->error('Onlyoffice editor: format "' . $ext . '" is not supported');
             return;
         }
 
@@ -94,6 +98,8 @@ class OnlyofficeController extends SugarController
 
         $this->view_object_map['config'] = $config;
         $this->view_object_map['documentServerUrl'] = $documentServerUrl;
+
+        LoggerManager::getLogger()->debug('Onlyoffice editor: config: ' . json_encode($config));
     }
 
     private function getUrl() {
