@@ -12,11 +12,13 @@ class CustomDocumentsViewDetail extends DocumentsViewDetail {
         parent::display();
 
         if (empty(AppConfig::GetDocumentServerUrl())) {
+            LoggerManager::getLogger()->debug('Onlyoffice view actions: document server url is not set');
             return;
         }
 
         $ext = strtolower(pathinfo($this->bean->filename, PATHINFO_EXTENSION));
         if (empty(AppConfig::GetFormats()[$ext])) {
+            LoggerManager::getLogger()->debug('Onlyoffice view actions: format ' . $ext . ' is not supported');
             return;
         }
 
@@ -40,6 +42,6 @@ class CustomDocumentsViewDetail extends DocumentsViewDetail {
             </script>
         JS;
 
-        print $js;
+        echo $js;
     }
 }
