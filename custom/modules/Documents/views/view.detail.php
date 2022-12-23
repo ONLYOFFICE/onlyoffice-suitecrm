@@ -5,10 +5,20 @@ if (!defined('sugarEntry') || !sugarEntry) {
 }
 
 require_once 'modules/Documents/views/view.detail.php';
+require_once 'modules/Onlyoffice/lib/appconfig.php';
 
 class CustomDocumentsViewDetail extends DocumentsViewDetail {
     function display() {
         parent::display();
+
+        if (empty(AppConfig::GetDocumentServerUrl())) {
+            return;
+        }
+
+        $ext = strtolower(pathinfo($this->bean->filename, PATHINFO_EXTENSION));
+        if (empty(AppConfig::GetFormats()[$ext])) {
+            return;
+        }
 
         $js = <<<JS
             <script type="text/javascript">
