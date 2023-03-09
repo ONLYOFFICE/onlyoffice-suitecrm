@@ -11,7 +11,7 @@
         </tbody>
     </table>
 
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="edit view">
         <tbody>
             <tr>
                 <td width="15%" scope="row" nowrap="">
