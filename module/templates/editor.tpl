@@ -4,7 +4,16 @@
 <script type="text/javascript" src={$documentServerUrl}/web-apps/apps/api/documents/api.js></script>
 <script type="text/javascript">
     var config = {$config}
-    var docEditor = new DocsAPI.DocEditor("editorFrame", config);
+
+    {literal}
+        document.addEventListener("DOMContentLoaded", function(event) {
+            if (typeof DocsAPI === 'undefined') {
+                return;
+            }
+
+            var docEditor = new DocsAPI.DocEditor("editorFrame", config);
+        });
+    {/literal}
 </script>
 <style>
     {literal}
