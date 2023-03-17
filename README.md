@@ -1,0 +1,1 @@
+﻿# SuiteCRM ONLYOFFICE Integration plugin
