@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright (c) Ascensio System SIA 2023. All rights reserved.
+ * http://www.onlyoffice.com
+ */
 
     $admin_option_defs = array();
     $admin_option_defs['Administration']['ONLYOFFICE'] = array(

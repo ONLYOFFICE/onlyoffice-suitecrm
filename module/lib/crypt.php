@@ -1,4 +1,8 @@
 <?php
+/**
+ * Copyright (c) Ascensio System SIA 2023. All rights reserved.
+ * http://www.onlyoffice.com
+ */
 
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
