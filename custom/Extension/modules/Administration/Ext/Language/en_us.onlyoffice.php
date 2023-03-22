@@ -4,7 +4,7 @@
  * http://www.onlyoffice.com
  */
 
-$mod_strings['ONLYOFFICE_LINK_NAME'] = 'ONLYOFFICE Link';
-$mod_strings['ONLYOFFICE_LINK_DESCRIPTION'] = 'ONLYOFFICE Link Description';
-$mod_strings['ONLYOFFICE_SECTION_HEADER'] = 'ONLYOFFICE Panel';
-$mod_strings['ONLYOFFICE_SECTION_DESCRIPTION'] = 'ONLYOFFICE Description';
+$mod_strings['ONLYOFFICE_SECTION_HEADER'] = 'ONLYOFFICE';
+$mod_strings['ONLYOFFICE_SECTION_DESCRIPTION'] = 'Manage your ONLYOFFICE SuiteCRM integration';
+$mod_strings['ONLYOFFICE_LINK_NAME'] = 'ONLYOFFICE Settings';
+$mod_strings['ONLYOFFICE_LINK_DESCRIPTION'] = 'Configuration settings to adjust your ONLYOFFICE Integration';
