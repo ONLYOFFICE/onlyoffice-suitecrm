@@ -31,20 +31,21 @@ class OnlyofficeController extends SugarController
     }
 
     public function action_editor() {
+        global $mod_strings;
         $this->view = 'editor';
 
         $record = $_REQUEST['record'] ?? '';
 
         $documentServerUrl = AppConfig::GetDocumentServerUrl();
         if (empty($documentServerUrl)) {
-            $this->view_object_map['error'] = 'ONLYOFFICE app is not configured. Please contact admin';
+            $this->view_object_map['error'] = $mod_strings['ONLYOFFICE_APP_NOT_CONFIGURED'];
             LoggerManager::getLogger()->error('Onlyoffice editor: app is not configured');
             return;
         }
 
         $document = BeanFactory::getBean('Documents', $record);
         if ($document === null) {
-            $this->view_object_map['error'] = 'File not found';
+            $this->view_object_map['error'] = $mod_strings['ONLYOFFICE_FILE_NOT_FOUND'];
             LoggerManager::getLogger()->error('Onlyoffice editor: file "' . $record . '" not found');
             return;
         }
@@ -52,7 +53,7 @@ class OnlyofficeController extends SugarController
         $user = $GLOBALS['current_user'];
 
         if (!$document->ACLAccess('view')) {
-            $this->view_object_map['error'] = 'You do not have enough permissions to view the file';
+            $this->view_object_map['error'] = $mod_strings['ONLYOFFICE_YOU_DO_NOT_HAVE_PERMISSIONS'];
             LoggerManager::getLogger()->error('Onlyoffice editor: user "' . $user->user_name . '" does not have enough permissions to view the file "' . $record .'"');
             return;
         }
@@ -60,7 +61,7 @@ class OnlyofficeController extends SugarController
         $ext = strtolower(pathinfo($document->filename, PATHINFO_EXTENSION));
         $format = AppConfig::GetFormats()[$ext] ?? null;
         if (empty($format)) {
-            $this->view_object_map['error'] = 'Format is not supported';
+            $this->view_object_map['error'] = $mod_strings['ONLYOFFICE_FORMAT_IS_NOT_SUPPORTED'];
             LoggerManager::getLogger()->error('Onlyoffice editor: format "' . $ext . '" is not supported');
             return;
         }

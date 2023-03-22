@@ -15,7 +15,7 @@
         <tbody>
             <tr>
                 <td width="15%" scope="row" nowrap="">
-                    <span>Document server address</span>
+                    <span>{$MOD.ONLYOFFICE_DOCUMENT_SERVER_ADDRESS}</span>
                 </td>
                 <td width="35%">
                     <span>
@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td width="15%" scope="row" nowrap="">
-                    <span>Secret key (leave blank to disable)</span>
+                    <span>{$MOD.ONLYOFFICE_SECRET_KEY}</span>
                 </td>
                 <td width="35%">
                     <span>
@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <td width="15%" scope="row" nowrap="">
-                    <span>Authorization header</span>
+                    <span>{$MOD.ONLYOFFICE_AUTHORIZATION_HEADER}</span>
                 </td>
                 <td width="35%">
                     <span>

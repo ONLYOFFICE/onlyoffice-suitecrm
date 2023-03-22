@@ -22,6 +22,8 @@ class CustomDocumentsViewDetail extends DocumentsViewDetail {
             return;
         }
 
+        $actionTitle = translate('ONLYOFFICE_OPEN_IN_ONLYOFFICE', 'Onlyoffice');
+
         $js = <<<JS
             <script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function(){
@@ -30,8 +32,8 @@ class CustomDocumentsViewDetail extends DocumentsViewDetail {
                     var input = document.createElement("input");
                     input.className = "button";
                     input.type = "button";
-                    input.title = "Open in ONLYOFFICE";
-                    input.value = "Open in ONLYOFFICE";
+                    input.title = "{$actionTitle}";
+                    input.value = "{$actionTitle}";
                     input.onclick = function(){
                         var id = [...document.getElementById("formDetailView").children].find((child) => child.name === "record").value;
                         window.location.href="index.php?module=Onlyoffice&action=editor&record=" + id;
