@@ -89,6 +89,11 @@ class OnlyofficeController extends SugarController
             ]
         ];
 
+        $config['editorConfig']['customization']['goback'] = [
+            'url' => $this->getUrl() . 'index.php?module=Documents&action=DetailView&record=' . $document->id,
+            'blank' => false
+        ];
+
         $canEdit = isset($format["edit"]) && $format["edit"];
         $canFillForms = isset($format["fillForms"]) && $format["fillForms"];
         $allowEdit = $document->ACLAccess('edit');
