@@ -97,6 +97,8 @@ class AppConfig
         "doc" => ["type" => 'word'],
         "docm" => ["type" => 'word'],
         "docx" => ["type" => 'word', "edit" => true],
+        "docxf" => ["type" => 'word', "edit" => true],
+        "oform" => ["type" => 'word', "fillForms" => true],
         "dot" => ["type" => 'word'],
         "dotm" => ["type" => 'word'],
         "dotx" => ["type" => 'word'],

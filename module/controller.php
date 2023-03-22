@@ -86,10 +86,11 @@ class OnlyofficeController extends SugarController
         ];
 
         $canEdit = isset($format["edit"]) && $format["edit"];
+        $canFillForms = isset($format["fillForms"]) && $format["fillForms"];
         $allowEdit = $document->ACLAccess('edit');
 
         $config['document']['permissions']['edit'] = $allowEdit;
-        if ($canEdit && $allowEdit) {
+        if (($canEdit || $canFillForms) && $allowEdit) {
             $config['editorConfig']['callbackUrl'] = $this->getUrl() . 'index.php?entryPoint=onlyofficeCallback&hash=' . $hash;
         } else {
             $config["editorConfig"]["mode"] = "view";
