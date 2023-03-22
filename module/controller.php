@@ -70,6 +70,8 @@ class OnlyofficeController extends SugarController
 
         $hash = Crypt::GetHash(['record' => $record, 'userId' => $user->id]);
 
+        $lang = get_current_language();
+
         $config = [
             'document' => [
                 'fileType' => $ext,
@@ -79,6 +81,7 @@ class OnlyofficeController extends SugarController
             ],
             'documentType' => $format["type"],
             'editorConfig' => [
+                'lang' => $lang,
                 'user' => [
                     'id' => $user->id,
                     'name' => $user->full_name
