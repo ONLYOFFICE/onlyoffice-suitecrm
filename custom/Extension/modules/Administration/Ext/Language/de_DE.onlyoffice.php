@@ -5,6 +5,6 @@
  */
 
 $mod_strings['ONLYOFFICE_SECTION_HEADER'] = 'ONLYOFFICE';
-$mod_strings['ONLYOFFICE_SECTION_DESCRIPTION'] = 'Manage your ONLYOFFICE SuiteCRM integration';
-$mod_strings['ONLYOFFICE_LINK_NAME'] = 'ONLYOFFICE Settings';
-$mod_strings['ONLYOFFICE_LINK_DESCRIPTION'] = 'Configuration settings to adjust your ONLYOFFICE Integration';
+$mod_strings['ONLYOFFICE_SECTION_DESCRIPTION'] = 'Verwalten Ihre Integration von ONLYOFFICE und SuiteCRM';
+$mod_strings['ONLYOFFICE_LINK_NAME'] = 'ONLYOFFICE-Einstellungen';
+$mod_strings['ONLYOFFICE_LINK_DESCRIPTION'] = 'Konfigurationen zum Anpassen der ONLYOFFICE-Integration';
