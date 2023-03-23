@@ -9,7 +9,7 @@
 }
 
 $mod_strings = array(
-    'ONLYOFFICE_DOCUMENT_SERVER_ADDRESS' => 'Document server address',
+    'ONLYOFFICE_DOCUMENT_SERVER_ADDRESS' => 'Document Editing Service Address',
     'ONLYOFFICE_SECRET_KEY' => 'Secret key (leave blank to disable)',
     'ONLYOFFICE_AUTHORIZATION_HEADER' => 'Authorization header (leave blank to use default header)',
     'ONLYOFFICE_APP_NOT_CONFIGURED' => 'ONLYOFFICE app is not configured. Please contact admin',
