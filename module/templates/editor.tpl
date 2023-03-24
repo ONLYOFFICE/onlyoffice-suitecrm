@@ -11,6 +11,10 @@
                 return;
             }
 
+            if (config["type"] === "mobile") {
+                document.body.classList.add("onlyoffice-mobile-mode");
+            }
+
             var docEditor = new DocsAPI.DocEditor("editorFrame", config);
         });
     {/literal}
@@ -19,9 +23,27 @@
     {literal}
         #onlyoffice-app {
             width: 100%;
-            height: 879px;
+            height: calc(100vh - 60px);
             margin-top: -40px;
             margin-bottom: -40px;
+        }
+
+        body.onlyoffice-mobile-mode {
+            overflow: hidden;
+        }
+
+        .onlyoffice-mobile-mode .mobile-bar {
+            display: none;
+        }
+
+        .onlyoffice-mobile-mode #onlyoffice-app {
+            height: calc(100vh - 60px - 60px) !important;
+            margin-top: -80px;
+        }
+
+        .onlyoffice-mobile-mode #onlyoffice-app > iframe {
+            position: inherit !important;
+            margin-top: 10px;
         }
 
         .error,
