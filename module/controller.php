@@ -94,7 +94,7 @@ class OnlyofficeController extends SugarController
             ]
         ];
 
-        if (preg_match(self::USER_AGENT_MOBILE, $_SERVER["HTTP_USER_AGENT"])) {
+        if (preg_match(self::USER_AGENT_MOBILE, $_SERVER['HTTP_USER_AGENT'])) {
             $config['type'] = 'mobile';
         }
 
@@ -103,15 +103,15 @@ class OnlyofficeController extends SugarController
             'blank' => false
         ];
 
-        $canEdit = isset($format["edit"]) && $format["edit"];
-        $canFillForms = isset($format["fillForms"]) && $format["fillForms"];
+        $canEdit = isset($format['edit']) && $format['edit'];
+        $canFillForms = isset($format['fillForms']) && $format['fillForms'];
         $allowEdit = $document->ACLAccess('edit');
 
         $config['document']['permissions']['edit'] = $allowEdit;
         if (($canEdit || $canFillForms) && $allowEdit) {
             $config['editorConfig']['callbackUrl'] = $this->getUrl() . 'index.php?entryPoint=onlyofficeCallback&hash=' . $hash;
         } else {
-            $config["editorConfig"]["mode"] = "view";
+            $config['editorConfig']['mode'] = 'view';
         }
 
         if (!empty(AppConfig::GetDocumentSecretKey())) {
