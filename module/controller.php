@@ -12,6 +12,11 @@ require_once 'modules/Onlyoffice/lib/crypt.php';
 
 class OnlyofficeController extends SugarController
 {
+    /**
+     * Mobile regex from https://github.com/ONLYOFFICE/CommunityServer/blob/v9.1.1/web/studio/ASC.Web.Studio/web.appsettings.config#L35
+     */
+    const USER_AGENT_MOBILE = "/android|avantgo|playbook|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od|ad)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|symbian|treo|up\\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i";
+
     public function action_settings() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $documentServerUrl = isset($_POST['documentServerUrl']) ? $_POST['documentServerUrl'] : '';
@@ -88,6 +93,10 @@ class OnlyofficeController extends SugarController
                 ]
             ]
         ];
+
+        if (preg_match(self::USER_AGENT_MOBILE, $_SERVER["HTTP_USER_AGENT"])) {
+            $config['type'] = 'mobile';
+        }
 
         $config['editorConfig']['customization']['goback'] = [
             'url' => $this->getUrl() . 'index.php?module=Documents&action=DetailView&record=' . $document->id,
