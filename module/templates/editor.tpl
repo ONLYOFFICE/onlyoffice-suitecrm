@@ -3,11 +3,24 @@
 </div>
 <script type="text/javascript" src={$documentServerUrl}/web-apps/apps/api/documents/api.js></script>
 <script type="text/javascript">
-    var config = {$config}
+    var config = {$config};
+    var errMsg = "{$msgCanNotBeReached}";
 
     {literal}
         document.addEventListener("DOMContentLoaded", function(event) {
-            if (typeof DocsAPI === 'undefined') {
+            if (typeof DocsAPI === "undefined") {
+                const errorNode = document.createElement("p");
+                errorNode.className = "error";
+
+                const errorText = document.createTextNode(errMsg);
+                errorNode.appendChild(errorText);
+                errorNode.style.display = "block";
+
+                const contentNode = document.getElementById("pagecontent");
+                if (contentNode) {
+                    contentNode.insertBefore(errorNode, contentNode.firstChild);
+                }
+
                 return;
             }
 
