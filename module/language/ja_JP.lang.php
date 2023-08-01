@@ -16,5 +16,6 @@ $mod_strings = array(
     'ONLYOFFICE_FILE_NOT_FOUND' => 'ファイルが見つかりません',
     'ONLYOFFICE_YOU_DO_NOT_HAVE_PERMISSIONS' => 'ファイルを閲覧する権限ありません',
     'ONLYOFFICE_FORMAT_IS_NOT_SUPPORTED' => 'このフォーマットはサポートされていません',
-    'ONLYOFFICE_OPEN_IN_ONLYOFFICE' => 'ONLYOFFICEで開く'
+    'ONLYOFFICE_OPEN_IN_ONLYOFFICE' => 'ONLYOFFICEで開く',
+    'ONLYOFFICE_CAN_NOT_BE_REACHED' => 'ONLYOFFICEに接続できません。管理者に相談してください'
 );

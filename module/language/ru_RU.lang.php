@@ -16,5 +16,6 @@ $mod_strings = array(
     'ONLYOFFICE_FILE_NOT_FOUND' => 'Файл не найден',
     'ONLYOFFICE_YOU_DO_NOT_HAVE_PERMISSIONS' => 'У вас недостаточно прав на просмотр файла',
     'ONLYOFFICE_FORMAT_IS_NOT_SUPPORTED' => 'Формат не поддерживается',
-    'ONLYOFFICE_OPEN_IN_ONLYOFFICE' => 'Открыть в ONLYOFFICE'
+    'ONLYOFFICE_OPEN_IN_ONLYOFFICE' => 'Открыть в ONLYOFFICE',
+    'ONLYOFFICE_CAN_NOT_BE_REACHED' => 'Приложение ONLYOFFICE недоступно. Пожалуйста, свяжитесь с администратором'
 );
