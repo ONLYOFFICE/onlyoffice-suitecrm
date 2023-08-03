@@ -6,12 +6,12 @@
 
 $manifest = array(
    'name' => 'ONLYOFFICE',
-   'description' => 'ONLYOFFICE Editor',
+   'description' => 'Edit and collaborate on office files within SuiteCRM Documents.',
    'version' => '1.0.0',
-   'author' => 'ASCENSIO SYSTEM',
+   'author' => 'Ascensio System SIA',
    'type' => 'module',
    'is_uninstallable' => true,
-   'readme' => 'README.txt'
+   'readme' => 'README.md'
 );
 $installdefs = array(
     'id' => 'onlyoffice',
