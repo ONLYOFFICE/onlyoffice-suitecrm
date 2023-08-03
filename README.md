@@ -14,8 +14,7 @@ The app allows to:
 Supported formats:
 
 * For viewing and editing: DOCX, XLSX, PPTX, DOCXF, OFORM.
-* For viewing only: PDF.
-* For converting to Office Open XML formats: ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
+* For viewing only: PDF, ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
 
 ## Installing ONLYOFFICE Docs
 
