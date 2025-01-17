@@ -1,6 +1,6 @@
-﻿# ONLYOFFICE plugin for SuiteCRM
+﻿# ONLYOFFFICE add-on for SuiteCRM
 
-The [ONLYOFFICE plugin for SuiteCRM](https://www.onlyoffice.com/office-for-suitecrm) integrates ONLYOFFICE Docs into your [SuiteCRM](https://suitecrm.com) platform, enabling seamless work with office files directly within the system.
+The [ONLYOFFICE add-on for SuiteCRM](https://www.onlyoffice.com/office-for-suitecrm) integrates ONLYOFFICE Docs into your [SuiteCRM](https://suitecrm.com) platform, enabling seamless work with office files directly within the system.
 
 ## ✨ Functionality
 
@@ -34,9 +34,9 @@ Review the [ONLYOFFICE Docs Editions](#onlyoffice-docs-editions) section for mor
 
 ## 🛠️ Installation
 
-Follow the steps below to install the ONLYOFFICE plugin for SuiteCRM:
+Follow the steps below to install the ONLYOFFICE add-on for SuiteCRM:
 
-### Step 1: Download the plugin
+### Step 1: Download the add-on
 
 Download the latest stable release (`.zip` file) from the [Releases page](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/releases).
 
@@ -54,7 +54,7 @@ Download the latest stable release (`.zip` file) from the [Releases page](https:
 
 ## ⚙️ Configuration
 
-After installation, configure the plugin for secure communication with ONLYOFFICE Docs.
+After installation, configure the add-on for secure communication with ONLYOFFICE Docs.
 
 1. Go to **Admin → ONLYOFFICE Settings**.
 2. Enter the ONLYOFFICE Docs URL.
@@ -67,9 +67,9 @@ After installation, configure the plugin for secure communication with ONLYOFFIC
 
 📘Learn more about JWT security in the [official documentation](https://api.onlyoffice.com/docs/docs-api/additional-api/signature/).
 
-## 📥 Using the plugin
+## 📥 Using the add-on
 
-Once the plugin is configured, you can view and edit documents directly in SuiteCRM:
+Once the add-on is configured, you can view and edit documents directly in SuiteCRM:
 
 1. Go to the **Documents** module.
 2. Open the **Detail View** of a document by clicking its file name.
