@@ -1,11 +1,11 @@
-﻿# SuiteCRM ONLYOFFICE Integration plugin
+﻿# ONLYOFFFICE add-on for SuiteCRM
 
-This app enables users to edit office documents from [SuiteCRM](https://suitecrm.com/) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#onlyoffice-docs-editions).
+This add-on enables users to edit office documents from [SuiteCRM](https://suitecrm.com/) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#onlyoffice-docs-editions).
 
 
 ## Features
 
-The app allows to:
+The add-on allows to:
 
 * Edit text documents, spreadsheets, and presentations.
 * Collaborate on documents in real time using two co-editing modes (Fast and Strict), Track Changes, comments, built-in chat.
@@ -28,15 +28,15 @@ To install Enterprise Edition, follow the instructions [here](https://helpcenter
 
 Community Edition vs Enterprise Edition comparison can be found [here](#onlyoffice-docs-editions).
 
-## Installing SuiteCRM ONLYOFFICE integration plugin
+## Installing ONLYOFFFICE add-on for SuiteCRM
 
-The latest compiled package files of the ONLYOFFICE integration plugin are available [here](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/releases).
+The latest compiled package files of the ONLYOFFFICE add-on are available [here](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/releases).
 
 1. Launch your SuiteCRM, switch to *Admin -> Admin Tools -> Module Loader* and upload the ONLYOFFICE plugin archive.
 2. Install the uploaded module by pressing the Install button.
 3. Switch to *Admin -> Admin Tools -> Repair* und run *Quick Repair and Rebuild*.
 
-## Configuring SuiteCRM ONLYOFFICE integration plugin
+## Configuring ONLYOFFFICE add-on for SuiteCRM
 
 The plugin settings page is available after installation: *Admin -> ONLYOFFICE -> ONLYOFFICE Settings*.
 
@@ -44,7 +44,7 @@ On the settings page, enter the name of the server with ONLYOFFICE Docs installe
 
 Starting from version 7.2, JWT is enabled by default and the secret key is generated automatically to restrict the access to ONLYOFFICE Docs and for security reasons and data integrity. Specify your own **Document Server Secret** on the SuiteCRM ONLYOFFICE Settings page. In the ONLYOFFICE Docs [config file](https://api.onlyoffice.com/editors/signature/), specify the same secret key to enable the validation.
 
-## Using SuiteCRM ONLYOFFICE integration plugin
+## Using ONLYOFFFICE add-on for SuiteCRM
 
 Once the plugin is installed and configured, you can edit and collaborate on office files in the Documents module.
 
