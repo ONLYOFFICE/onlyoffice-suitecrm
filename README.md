@@ -42,7 +42,7 @@ The plugin settings page is available after installation: *Admin -> ONLYOFFICE -
 
 On the settings page, enter the name of the server with ONLYOFFICE Docs installed in the Document Server address field.
 
-Starting from version 7.2, JWT is enabled by default and the secret key is generated automatically to restrict the access to ONLYOFFICE Docs and for security reasons and data integrity. Specify your own **Document Server Secret** on the SuiteCRM ONLYOFFICE Settings page. In the ONLYOFFICE Docs [config file](https://api.onlyoffice.com/editors/signature/), specify the same secret key to enable the validation.
+Starting from version 7.2, JWT is enabled by default and the secret key is generated automatically to restrict the access to ONLYOFFICE Docs and for security reasons and data integrity. Specify your own **Document Server Secret** on the SuiteCRM ONLYOFFICE Settings page. In the ONLYOFFICE Docs [config file](https://api.onlyoffice.com/docs/docs-api/additional-api/signature/), specify the same secret key to enable the validation.
 
 ## Using ONLYOFFFICE add-on for SuiteCRM
 
