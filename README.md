@@ -1,56 +1,80 @@
-﻿# SuiteCRM ONLYOFFICE Integration plugin
+﻿# ONLYOFFICE plugin for SuiteCRM
 
-This app enables users to edit office documents from [SuiteCRM](https://suitecrm.com/) using ONLYOFFICE Docs packaged as Document Server - [Community or Enterprise Edition](#onlyoffice-docs-editions).
+The [ONLYOFFICE plugin for SuiteCRM](https://www.onlyoffice.com/office-for-suitecrm) integrates ONLYOFFICE Docs into your [SuiteCRM](https://suitecrm.com) platform, enabling seamless work with office files directly within the system.
 
+## ✨ Functionality
 
-## Features
+- **Work with documents, spreadsheets, and presentations:** View, edit and manage files attached to CRM records or stored in the Documents module.
+- **Real-time collaboration:** Work with colleagues simultaneously on any document, with two co-editing modes (Fast and Strict), track changes, and built-in commenting features.
+- **Secure editing:** JSON Web Token (JWT) is used to secure all document traffic and prevent unauthorized access and prevent unauthorized access.
 
-The app allows to:
+### Supported file formats
 
-* Edit text documents, spreadsheets, and presentations.
-* Collaborate on documents in real time using two co-editing modes (Fast and Strict), Track Changes, comments, built-in chat.
-* Create and fill out digital forms. 
+- **View/Edit:** DOCX, XLSX, PPTX.
+- **View:** PDF, ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
 
-Supported formats:
+## Ready to integrate? Here’s what you need
 
-* For viewing and editing: DOCX, XLSX, PPTX, DOCXF, OFORM.
-* For viewing only: PDF, ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
+Before you begin, make sure your environment meets the following requirements:
 
-## Installing ONLYOFFICE Docs
+| **Component**       | **Details**                                                                                       |
+| :------------------ | :------------------------------------------------------------------------------------------------ |
+| **ONLYOFFICE Docs** | Accessible instance of [ONLYOFFICE Docs](https://www.onlyoffice.com/docs) (online editors), preferably the latest stable version.    |
+| **Connection**      | SuiteCRM must be able to communicate with ONLYOFFICE Docs and receive callback **POST** requests. |
+| **SuiteCRM**        | Confirmed compatibility with the latest stable release of SuiteCRM.                               |
 
-You will need an instance of ONLYOFFICE Docs (Document Server) that is resolvable and connectable both from SuiteCRM and any end clients. ONLYOFFICE Document Server must also be able to POST to SuiteCRM directly.
+For deployment, choose between a self-hosted installation or the [ONLYOFFICE Docs Cloud](https://www.onlyoffice.com/docs-registration) service.
 
-You can install free Community version of ONLYOFFICE Docs or scalable Enterprise Edition.
+Installation options:
+- [Install with Docker (recommended)](https://github.com/ONLYOFFICE/Docker-DocumentServer)
+- [Install with DEB/RPM packages](https://helpcenter.onlyoffice.com/docs/installation/docs-community-install-ubuntu.aspx)
+- [Install the Enterprise Edition](https://helpcenter.onlyoffice.com/docs/installation/enterprise)
 
-To install free Community version, use [Docker](https://github.com/onlyoffice/Docker-DocumentServer) (recommended) or follow [these instructions](https://helpcenter.onlyoffice.com/installation/docs-community-install-ubuntu.aspx) for Debian, Ubuntu, or derivatives.
+Review the [ONLYOFFICE Docs Editions](#onlyoffice-docs-editions) section for more details on the self-hosted Community and Enterprise options.
 
-To install Enterprise Edition, follow the instructions [here](https://helpcenter.onlyoffice.com/installation/docs-enterprise-index.aspx).
+## 🛠️ Installation
 
-Community Edition vs Enterprise Edition comparison can be found [here](#onlyoffice-docs-editions).
+Follow the steps below to install the ONLYOFFICE plugin for SuiteCRM:
 
-## Installing SuiteCRM ONLYOFFICE integration plugin
+### Step 1: Download the plugin
 
-The latest compiled package files of the ONLYOFFICE integration plugin are available [here](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/releases).
+Download the latest stable release (`.zip` file) from the [Releases page](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/releases).
 
-1. Launch your SuiteCRM, switch to *Admin -> Admin Tools -> Module Loader* and upload the ONLYOFFICE plugin archive.
-2. Install the uploaded module by pressing the Install button.
-3. Switch to *Admin -> Admin Tools -> Repair* und run *Quick Repair and Rebuild*.
+### Step 2: Install via Module Loader
 
-## Configuring SuiteCRM ONLYOFFICE integration plugin
+1. Log into your SuiteCRM instance as an **Administrator**.
+2. Navigate to **Admin** → **Admin Tools** → **Module Loader**.
+3. Click **Browse**, select the downloaded ZIP file, and click **Upload**.
+4. Once uploaded, click **Install** and confirm the installation.
 
-The plugin settings page is available after installation: *Admin -> ONLYOFFICE -> ONLYOFFICE Settings*.
+### Step 3: Run Quick Repair and Rebuild
 
-On the settings page, enter the name of the server with ONLYOFFICE Docs installed in the Document Server address field.
+1. Navigate to **Admin** → **Admin Tools** → **Repair**.
+2. Select **Quick Repair and Rebuild**.
 
-Starting from version 7.2, JWT is enabled by default and the secret key is generated automatically to restrict the access to ONLYOFFICE Docs and for security reasons and data integrity. Specify your own **Document Server Secret** on the SuiteCRM ONLYOFFICE Settings page. In the ONLYOFFICE Docs [config file](https://api.onlyoffice.com/editors/signature/), specify the same secret key to enable the validation.
+## ⚙️ Configuration
 
-## Using SuiteCRM ONLYOFFICE integration plugin
+After installation, configure the plugin for secure communication with ONLYOFFICE Docs.
 
-Once the plugin is installed and configured, you can edit and collaborate on office files in the Documents module.
+1. Go to **Admin → ONLYOFFICE Settings**.
+2. Enter the ONLYOFFICE Docs URL.
+3. Set up JWT security:
+   - Use the same secret key configured in your ONLYOFFICE Docs instance (`local.json` for self-hosted setups).
+   - In SuiteCRM, go to **ONLYOFFICE Settings → Secret Key** and enter the same key.
+   - Click **Save** to apply changes.
 
-1. Go to the Documents module.
-2. Open the *Detail View* page by clicking on the file name.
-3. On the Detail View page, click on **Open in ONLYOFFICE** in the drop-down ACTIONS menu - the file will open in a new tab.
+**Note:** In ONLYOFFICE Docs v7.2 and later, JWT is enabled by default and a secret key is auto-generated. You may override it with a custom key—but if you do, use the same key in both systems.
+
+📘Learn more about JWT security in the [official documentation](https://api.onlyoffice.com/docs/docs-api/additional-api/signature/).
+
+## 📥 Using the plugin
+
+Once the plugin is configured, you can view and edit documents directly in SuiteCRM:
+
+1. Go to the **Documents** module.
+2. Open the **Detail View** of a document by clicking its file name.
+3. From the **Actions** menu, click **Open in ONLYOFFICE** — the file will open in a new tab for editing or real-time collaboration.
+4. All changes are automatically saved back to SuiteCRM.
 
 ## ONLYOFFICE Docs editions
 
@@ -58,32 +82,32 @@ ONLYOFFICE offers different versions of its online document editors that can be 
 
 **ONLYOFFICE Docs** packaged as Document Server:
 
-* Community Edition (`onlyoffice-documentserver` package)
-* Enterprise Edition (`onlyoffice-documentserver-ee` package)
+* Community Edition 🆓 (`onlyoffice-documentserver` package)
+* Enterprise Edition 🏢 (`onlyoffice-documentserver-ee` package)
 
-The table below will help you make the right choice.
+The table below will help you to make the right choice.
 
 | Pricing and licensing | Community Edition | Enterprise Edition |
 | ------------- | ------------- | ------------- |
-| | [Get it now](https://www.onlyoffice.com/download-docs.aspx#docs-community)  | [Start Free Trial](https://www.onlyoffice.com/download-docs.aspx#docs-enterprise)  |
-| Cost  | FREE  | [Go to the pricing page](https://www.onlyoffice.com/docs-enterprise-prices.aspx)  |
+| | [Get it now](https://www.onlyoffice.com/download-community?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSuiteCRM#docs-community)  | [Start Free Trial](https://www.onlyoffice.com/download?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSuiteCRM#docs-enterprise)  |
+| Cost  | FREE  | [Go to the pricing page](https://www.onlyoffice.com/docs-enterprise-prices?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSuiteCRM)  |
 | Simultaneous connections | up to 20 maximum  | As in chosen pricing plan |
 | Number of users | up to 20 recommended | As in chosen pricing plan |
 | License | GNU AGPL v.3 | Proprietary |
 | **Support** | **Community Edition** | **Enterprise Edition** |
-| Documentation | [Help Center](https://helpcenter.onlyoffice.com/installation/docs-community-index.aspx) | [Help Center](https://helpcenter.onlyoffice.com/installation/docs-enterprise-index.aspx) |
-| Standard support | [GitHub](https://github.com/ONLYOFFICE/DocumentServer/issues) or paid | One year support included |
+| Documentation | [Help Center](https://helpcenter.onlyoffice.com/docs/installation/community) | [Help Center](https://helpcenter.onlyoffice.com/docs/installation/enterprise) |
+| Standard support | [GitHub](https://github.com/ONLYOFFICE/DocumentServer/issues) or paid | 1 or 3 years support included |
 | Premium support | [Contact us](mailto:sales@onlyoffice.com) | [Contact us](mailto:sales@onlyoffice.com) |
 | **Services** | **Community Edition** | **Enterprise Edition** |
 | Conversion Service                | + | + |
 | Document Builder Service          | + | + |
 | **Interface** | **Community Edition** | **Enterprise Edition** |
-| Tabbed interface                       | + | + |
-| Dark theme                             | + | + |
-| 125%, 150%, 175%, 200% scaling         | + | + |
-| White Label                            | - | - |
-| Integrated test example (node.js)      | + | + |
-| Mobile web editors                     | - | +* |
+| Tabbed interface                  | + | + |
+| Dark theme                        | + | + |
+| 125%, 150%, 175%, 200% scaling    | + | + |
+| White Label                       | - | - |
+| Integrated test example (node.js) | + | + |
+| Mobile web editors                | - | +* |
 | **Plugins & Macros** | **Community Edition** | **Enterprise Edition** |
 | Plugins                           | + | + |
 | Macros                            | + | + |
@@ -97,8 +121,8 @@ The table below will help you make the right choice.
 | **Document Editor features** | **Community Edition** | **Enterprise Edition** |
 | Font and paragraph formatting   | + | + |
 | Object insertion                | + | + |
-| Adding Content control          | + | + | 
-| Editing Content control         | + | + | 
+| Adding Content control          | + | + |
+| Editing Content control         | + | + |
 | Layout tools                    | + | + |
 | Table of contents               | + | + |
 | Navigation panel                | + | + |
@@ -110,22 +134,36 @@ The table below will help you make the right choice.
 | Functions, formulas, equations  | + | + |
 | Table templates                 | + | + |
 | Pivot tables                    | + | + |
-| Data validation           | + | + |
+| Data validation                 | + | + |
 | Conditional formatting          | + | + |
-| Sparklines                   | + | + |
+| Sparklines                      | + | + |
 | Sheet Views                     | + | + |
 | **Presentation Editor features** | **Community Edition** | **Enterprise Edition** |
 | Font and paragraph formatting   | + | + |
 | Object insertion                | + | + |
 | Transitions                     | + | + |
+| Animations                      | + | + |
 | Presenter mode                  | + | + |
 | Notes                           | + | + |
 | **Form creator features** | **Community Edition** | **Enterprise Edition** |
-| Adding form fields           | + | + |
+| Adding form fields              | + | + |
 | Form preview                    | + | + |
 | Saving as PDF                   | + | + |
-| | [Get it now](https://www.onlyoffice.com/download-docs.aspx#docs-community)  | [Start Free Trial](https://www.onlyoffice.com/download-docs.aspx#docs-enterprise)  |
+| **PDF Editor features**      | **Community Edition** | **Enterprise Edition** |
+| Text editing and co-editing                                | + | + |
+| Work with pages (adding, deleting, rotating)               | + | + |
+| Inserting objects (shapes, images, hyperlinks, etc.)       | + | + |
+| Text annotations (highlight, underline, cross out, stamps) | + | + |
+| Comments                        | + | + |
+| Freehand drawings               | + | + |
+| Form filling                    | + | + |
+| | [Get it now](https://www.onlyoffice.com/download-community?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSuiteCRM#docs-community)  | [Start Free Trial](https://www.onlyoffice.com/download?utm_source=github&utm_medium=cpc&utm_campaign=GitHubSuiteCRM#docs-enterprise)  |
 
 \* If supported by DMS.
 
-In case of technical problems, the best way to get help is to submit your issues [here](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/issues). Alternatively, you can contact ONLYOFFICE team on [forum.onlyoffice.com](https://forum.onlyoffice.com/).
+## Need help? User Feedback and Support 💡
+
+* **🐞 Found a bug?** Please report it by creating an [issue](https://github.com/ONLYOFFICE/onlyoffice-suitecrm/issues).
+* **❓ Have a question?** Ask our community and developers on the [ONLYOFFICE Forum](https://community.onlyoffice.com).
+* **👨‍💻 Need help for developers?** Check our [API documentation](https://api.onlyoffice.com).
+* **💡 Want to suggest a feature?** Share your ideas on our [feedback platform](https://feedback.onlyoffice.com/forums/966080-your-voice-matters).
