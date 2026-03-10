@@ -13,7 +13,7 @@ The [ONLYOFFICE add-on for SuiteCRM](https://www.onlyoffice.com/office-for-suite
 - **View/Edit:** DOCX, XLSX, PPTX.
 - **View:** PDF, ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
 
-## Ready to integrate? Here’s what you need
+## Ready to integrate? Here's what you need
 
 Before you begin, make sure your environment meets the following requirements:
 
