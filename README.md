@@ -1,6 +1,12 @@
 ﻿# ONLYOFFFICE add-on for SuiteCRM
 
-The [ONLYOFFICE add-on for SuiteCRM](https://www.onlyoffice.com/office-for-suitecrm) integrates ONLYOFFICE Docs into your [SuiteCRM](https://suitecrm.com) platform, enabling seamless work with office files directly within the system.
+The ONLYOFFICE add-on for SuiteCRM integrates [ONLYOFFICE Docs](https://www.onlyoffice.com/docs) into your [SuiteCRM](https://suitecrm.com) platform, enabling seamless work with office files directly within the system.
+
+<p align="center">
+  <a href="https://www.onlyoffice.com/office-for-suitecrm">
+    <img width="800" src="https://static-site.onlyoffice.com/public/images/templates/office-for-suitecrm/hero/screen5@2x.png" alt="ONLYOFFICE Docs for SuiteCRM">
+  </a>
+</p>
 
 ## ✨ Functionality
 
@@ -13,7 +19,7 @@ The [ONLYOFFICE add-on for SuiteCRM](https://www.onlyoffice.com/office-for-suite
 - **View/Edit:** DOCX, XLSX, PPTX.
 - **View:** PDF, ODT, ODS, ODP, DOC, XLS, PPT, PPS, EPUB, RTF, HTML, HTM, TXT, CSV.
 
-## Ready to integrate? Here’s what you need
+## Ready to integrate? Here's what you need
 
 Before you begin, make sure your environment meets the following requirements:
 
@@ -63,7 +69,7 @@ After installation, configure the add-on for secure communication with ONLYOFFIC
    - In SuiteCRM, go to **ONLYOFFICE Settings → Secret Key** and enter the same key.
    - Click **Save** to apply changes.
 
-**Note:** In ONLYOFFICE Docs v7.2 and later, JWT is enabled by default and a secret key is auto-generated. You may override it with a custom key—but if you do, use the same key in both systems.
+**Note:** JWT is enabled by default and a secret key is auto-generated. You may override it with a custom key—but if you do, use the same key in both systems.
 
 📘Learn more about JWT security in the [official documentation](https://api.onlyoffice.com/docs/docs-api/additional-api/signature/).
 
